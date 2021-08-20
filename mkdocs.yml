@@ -19,8 +19,8 @@ nav:
 theme:
   name: material
   custom_dir: docs/overrides
-  # logo: assets/imgs/index.png
-  # favicon: assets/imgs/index.png
+  logo: assets/imgs/index.png
+  favicon: assets/imgs/index.png
   palette:
     scheme: youtube
 
