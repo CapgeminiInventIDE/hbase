@@ -10,7 +10,7 @@ htmlcov/*
 node_modules/
 dist/
 __pycache__/
-*.png
+
 
 # TODO.md
 # Compiled Java class files
