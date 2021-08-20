@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 # More options here: https://python-poetry.org/docs/pyproject/
 name = "hbase"
-version = "0.1.2"
+version = "0.1.3"
 description = "Hbase REST API client built using uplink"
 authors = ["Andy Challis <andrewchallis@hotmail.co.uk>", "Chris Tassone <tassone.se@gmail.com>"]
 license = "MIT"
