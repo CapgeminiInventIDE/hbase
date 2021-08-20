@@ -1,0 +1,127 @@
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+# More options here: https://python-poetry.org/docs/pyproject/
+name = "hbase"
+version = "0.1.0"
+description = "Hbase REST API client built using uplink"
+authors = ["Andy Challis <andrewchallis@hotmail.co.uk>", "Chris Tassone <tassone.se@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/CapgeminiInventIDE/hbase"
+homepage = "https://github.com/CapgeminiInventIDE/hbase"
+documentation = "https://github.com/CapgeminiInventIDE/hbase"
+keywords = ["hbase", "rest", "api"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+  "Operating System :: OS Independent"
+]
+packages = [
+    { include = "hbase", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6.1,<4.0"
+uplink = ">=0.9.4"
+pydantic = ">=1.8.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-cov = "*"
+interrogate = "*"
+mypy = "*"
+requests = "*"
+black = "19.10b0"
+isort = "5.0.0"
+autoflake = "1.3.1"
+flake8 = "3.8.3"
+pytruth = "1.1.0"
+pre-commit = "2.12.1"
+poethepoet = "0.10.0"
+flakehell = "^0.9.0"
+safety = "^1.10.3"
+mkdocs-material = "^7.1.4"
+mkdocstrings = "^0.15.0"
+mkdocs = "^1.1.2"
+
+[tool.poe.tasks]
+# More options here: https://github.com/nat-n/poethepoet
+_autoflake = "autoflake -r src --recursive --in-place --remove-all-unused-imports --exclude=__init__.py"
+_isort = "isort src"
+_black = "black src"
+_flake8 = "flakehell lint src"
+
+_test_coverage = "pytest --cov=src --cov-report html"
+_test_docstrings = "interrogate -c pyproject.toml src"
+
+_init_git = "git init"
+_init_precommit = "pre-commit install"
+_init_gitmoji = "gitmoji -i"
+
+init = ["_init_git", "_init_precommit", "_init_gitmoji"]
+lint = ["_autoflake", "_isort", "_black", "_flake8"]
+test = ["_test_coverage", "_test_docstrings"]
+docs = "mkdocs serve --dev-addr 0.0.0.0:8000"
+clean = """
+rm -rf .coverage
+       .mypy_cache
+       .pytest_cache
+       dist
+       ./**/__pycache__
+       htmlcov
+"""
+
+
+[tool.black]
+# More options here: https://black.readthedocs.io/en/stable/pyproject_toml.html
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.flakehell]
+# More options here: https://flakehell.readthedocs.io/config.html
+exclude = [".git", "__pycache__", "tests", "__init__.py"]
+
+[tool.flakehell.plugins]
+pyflakes = ["+C*", "+E*", "+F*", "+W*", "+B*", "-E203", "E501", "W503"]
+
+[tool.interrogate]
+# More options here: https://interrogate.readthedocs.io/en/latest/#configuration
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = true
+ignore-semiprivate = true
+ignore-private = true
+ignore-property-decorators = true
+ignore-module = true
+fail-under = 100
+exclude = ["src/tests"]
+ignore-regex = ["^test"]
+verbose = 2
+quiet = false
+whitelist-regex = []
+color = true
+
+[tool.isort]
+# More options here: https://pycqa.github.io/isort/docs/configuration/options/
+profile = "black"
+src_paths = ["src"]
+
+[tool.coverage.run]
+# More options here: https://coverage.readthedocs.io/en/coverage-5.5/config.html#run
+omit = ["*/__init__.py", "src/tests/*"]

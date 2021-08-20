@@ -1,0 +1,10 @@
+version: "2"
+services:
+    hbase:
+        build: .
+        image: challisa/hbase
+        container_name: hbase
+        volumes:
+            - .:/opt/working
+            - ~/.gitconfig:/etc/gitconfig
+        entrypoint: sleep 50000

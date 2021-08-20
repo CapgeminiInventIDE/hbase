@@ -1,0 +1,23 @@
+fail_fast: true
+repos:
+  - repo: local
+    hooks:
+      - id: system
+        name: Lint
+        entry: poetry run poe lint
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: system
+        name: Safety
+        entry: poetry run safety check
+        pass_filenames: false
+        language: system
+  - repo: local
+    hooks:
+      - id: system
+        name: MyPy
+        entry: poetry run mypy src
+        pass_filenames: false
+        language: system

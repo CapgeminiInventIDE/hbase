@@ -1,0 +1,65 @@
+site_name: "hbase"
+site_description: "Hbase REST API client built using uplink"
+site_url: "https://CapgeminiInventIDE.github.io/hbase"
+repo_url: "https://github.com/CapgeminiInventIDE/hbase"
+
+repo_name: "CapgeminiInventIDE/hbase"
+
+nav:
+  - Getting Started: index.md
+  - Features: features.md
+  - Tutorial - User Guide:
+      - Tutorial - User Guide - Intro: user-guide/intro.md
+      - First Steps: user-guide/first-steps.md
+  - Alternatives, Inspiration and Comparisons: alternatives.md
+  - Development - Contributing: contributing.md
+  - Code of Conduct: code-of-conduct.md
+  - Release Notes: release-notes.md
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  # logo: assets/imgs/index.png
+  # favicon: assets/imgs/index.png
+  palette:
+    scheme: youtube
+
+extra_css:
+  - assets/css/styles.css
+
+extra_javascript:
+  - assets/js/theme.js
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed
+  - toc:
+      permalink: "¤"
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append("src")
+          rendering:
+            show_root_heading: no
+            show_if_no_docstring: no
+      watch:
+        - src/hbase
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/CapgeminiInventIDE
