@@ -19,7 +19,7 @@ jobs:
           poetry install
           poetry build
           pkg=`ls dist/hbase*.tar.gz`
-          pip install pkg
+          pip install ${pkg}
 
       - name: Deploy docs
         run: |
