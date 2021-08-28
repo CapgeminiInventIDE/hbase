@@ -1,6 +1,6 @@
 import pytest
 
-from ..hbase.utils import to_base64, from_base64
+from ..hbase.utils import from_base64, to_base64
 
 
 @pytest.mark.parametrize("s,e", [("aGVsbG8=", "hello"), ("MTIzNDU=", "12345"), ("", ""),])

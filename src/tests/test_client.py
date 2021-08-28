@@ -1,11 +1,11 @@
 from ..hbase import *
-from ..hbase.models.version import *
-from ..hbase.models.storage_cluster_status import *
-from ..hbase.models.table_list import *
-from ..hbase.models.table_schema import *
-from ..hbase.models.table_info import *
 from ..hbase.models.cell_set import *
 from ..hbase.models.namespaces import *
+from ..hbase.models.storage_cluster_status import *
+from ..hbase.models.table_info import *
+from ..hbase.models.table_list import *
+from ..hbase.models.table_schema import *
+from ..hbase.models.version import *
 
 test_table_name = "unit_test"
 hbase = HBase("http://hbase:8080")

@@ -2,11 +2,35 @@ import json
 from typing import Dict, List, Optional
 
 import requests
-from uplink import Body, Consumer, Path, get, headers, post, returns, delete, Query
+from uplink import (
+    Body,
+    Consumer,
+    Path,
+    Query,
+    delete,
+    get,
+    headers,
+    post,
+    returns,
+)
 
-from .models import *
+from .errors import (
+    ScannerCreationFailed,
+    raise_for_data_not_found,
+    raise_for_scanner,
+    raise_for_table_not_found,
+)
+from .models import (
+    CellSet,
+    NameSpaces,
+    StorageClusterStatus,
+    StorageClusterVersion,
+    TableInfo,
+    TableList,
+    TableSchema,
+    Version,
+)
 from .utils import to_base64
-from .errors import raise_for_scanner, raise_for_data_not_found, raise_for_table_not_found, ScannerCreationFailed
 
 
 class HBase(Consumer):
@@ -80,14 +104,16 @@ class HBase(Consumer):
     @returns.json
     @headers({"Accept": "application/json"})
     @get("{table}/{row_id}")
-    def get_row(self, table: Path, row_id: Path, num_versions: Query("v") = None) -> CellSet:
+    def get_row(self, table: Path, row_id: Path, num_versions: Query("v") = None) -> CellSet:  # noqa: F821
         """Retrieves single row, or multiple rows using *"""
 
     @raise_for_data_not_found
     @returns.json
     @headers({"Accept": "application/json"})
     @get("{table}/{row_id}/{column}")
-    def get_cell(self, table: Path, row_id: Path, column: Path, num_versions: Query("v") = None) -> CellSet:
+    def get_cell(
+        self, table: Path, row_id: Path, column: Path, num_versions: Query("v") = None  # noqa: F821
+    ) -> CellSet:  # noqa: F821
         """Retrieves single cell, use column={column_name}:{qualifier} for qualifiers"""
 
     @raise_for_data_not_found
@@ -95,7 +121,7 @@ class HBase(Consumer):
     @headers({"Accept": "application/json"})
     @get("{table}/{row_id}/{column}/{timestamp}")
     def get_cell_with_timestamp(
-        self, table: Path, row_id: Path, column: Path, timestamp: Path, num_versions: Query("v") = None
+        self, table: Path, row_id: Path, column: Path, timestamp: Path, num_versions: Query("v") = None  # noqa: F821
     ) -> CellSet:
         """Retrieves single cell with the given timestamp, use column={column_name}:{qualifier} for qualifiers"""
 
@@ -136,14 +162,14 @@ class HBase(Consumer):
         self,
         table: Path,
         row_prefix: Path = "",
-        start_row: Query("startrow") = None,
-        end_row: Query("endrow") = None,
-        columns: Query("columns") = None,
-        start_time: Query("starttime") = None,
-        end_time: Query("endtime") = None,
-        max_versions: Query("maxversions") = None,
-        batch_size: Query("batchsize") = None,
-        limit: Query("limit") = None,
+        start_row: Query("startrow") = None,  # noqa: F821
+        end_row: Query("endrow") = None,  # noqa: F821
+        columns: Query("columns") = None,  # noqa: F821
+        start_time: Query("starttime") = None,  # noqa: F821
+        end_time: Query("endtime") = None,  # noqa: F821
+        max_versions: Query("maxversions") = None,  # noqa: F821
+        batch_size: Query("batchsize") = None,  # noqa: F821
+        limit: Query("limit") = None,  # noqa: F821
     ) -> CellSet:
         """The current scanner API expects clients to restart scans if there is a REST server failure in the midst. The stateless does not store any state related to scan operation and all the parameters are specified as query parameters.
         
@@ -260,4 +286,3 @@ class HBase(Consumer):
         after some globally configurable interval has elapsed 
         with no activity on the scanner.
         """
-

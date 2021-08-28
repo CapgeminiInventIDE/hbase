@@ -98,7 +98,7 @@ exclude = '''
 exclude = [".git", "__pycache__", "tests", "__init__.py"]
 
 [tool.flakehell.plugins]
-pyflakes = ["+C*", "+E*", "+F*", "+W*", "+B*", "-E203", "E501", "W503"]
+pyflakes = ["+C*", "+E*", "+F*", "+W*", "+B*", "-E203", "-E501", "-W503"]
 
 [tool.interrogate]
 # More options here: https://interrogate.readthedocs.io/en/latest/#configuration
