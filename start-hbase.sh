@@ -1,0 +1,1 @@
+/home/hbase/bin/start-hbase.sh && /home/hbase/bin/hbase-daemon.sh start rest --infoport 8085 && tail -f /home/hbase/logs/*.log

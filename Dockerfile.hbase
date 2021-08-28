@@ -1,0 +1,30 @@
+FROM openjdk:8
+
+ENV HBASE_VERSION=2.2.2
+
+RUN groupadd -r hbase && useradd -m -r -g hbase hbase
+
+USER hbase
+ENV HOME=/home/hbase
+
+# Download'n extract hbase
+RUN cd /home/hbase && \
+    wget -O - -q \
+    https://archive.apache.org/dist/hbase/${HBASE_VERSION}/hbase-${HBASE_VERSION}-bin.tar.gz \
+    | tar --strip-components=1 -zxf -
+
+WORKDIR /home/hbase
+
+USER root
+
+ADD start-hbase.sh ${HOME}
+RUN chmod -R +x ${HOME}/start-hbase.sh
+
+# Ports needed for HBASE
+# More Info: https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.0/administration/content/hbase-ports.html
+# HBase REST Server (optional) - The port used by HBase Rest Servers. REST servers are optional, and not installed by default
+EXPOSE 8080
+
+
+# kick off the custom start script
+ENTRYPOINT ["sh", "./start-hbase.sh"]

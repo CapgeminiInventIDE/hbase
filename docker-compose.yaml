@@ -1,10 +1,19 @@
 version: "2"
 services:
-    hbase:
+    hbase-py:
         build: .
-        image: challisa/hbase
-        container_name: hbase
+        image: challisa/hbase-py
+        container_name: hbase-py
         volumes:
             - .:/opt/working
             - ~/.gitconfig:/etc/gitconfig
         entrypoint: sleep 50000
+
+    hbase:
+        image: challisa/hbase
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile.hbase
+        ports:
+            - 8080:8080
