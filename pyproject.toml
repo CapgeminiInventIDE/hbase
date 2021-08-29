@@ -54,7 +54,7 @@ _isort = "isort src"
 _black = "black src"
 _flake8 = "flakehell lint src"
 
-_test_coverage = "pytest --cov=src --cov-report html --disable-warnings"
+_test_coverage = "pytest --cov=src/hbase --cov-report html --disable-warnings"
 _test_docstrings = "interrogate -c pyproject.toml src"
 
 _init_git = "git init"
