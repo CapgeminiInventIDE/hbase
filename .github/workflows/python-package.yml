@@ -31,8 +31,6 @@ jobs:
           poetry run poe lint
       - name: Test with pytest
         run: |
-          poetry run poe test
+          poetry run pytest --cov=./
       - name: Upload coverage
         uses: codecov/codecov-action@v2
-        with:
-          directory: /home/runner/work/hbase/hbase
