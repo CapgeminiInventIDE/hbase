@@ -1,0 +1,3 @@
+# HBase - Errors
+
+::: hbase.errors

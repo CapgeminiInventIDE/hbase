@@ -7,11 +7,22 @@ repo_name: "CapgeminiInventIDE/hbase"
 
 nav:
   - Getting Started: index.md
-  - Features: features.md
-  - Tutorial - User Guide:
-      - Tutorial - User Guide - Intro: user-guide/intro.md
-      - First Steps: user-guide/first-steps.md
-  - Alternatives, Inspiration and Comparisons: alternatives.md
+  # - Features: features.md
+  - Reference:
+      - client: reference/client.md
+      - models: 
+        - cell_set: reference/models/cell_set.md
+        - namespaces: reference/models/namespaces.md
+        - storage_cluster_status: reference/models/storage_cluster_status.md
+        - table_info: reference/models/table_info.md
+        - table_list: reference/models/table_list.md
+        - table_schema: reference/models/table_schema.md
+        - version: reference/models/version.md
+      - errors: reference/errors.md
+  # - Tutorial - User Guide:
+  #     - Tutorial - User Guide - Intro: user-guide/intro.md
+  #     - First Steps: user-guide/first-steps.md
+  # - Alternatives, Inspiration and Comparisons: alternatives.md
   - Development - Contributing: contributing.md
   - Code of Conduct: code-of-conduct.md
   - Release Notes: release-notes.md

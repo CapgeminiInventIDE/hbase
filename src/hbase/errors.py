@@ -22,7 +22,7 @@ class TableNotFound(Exception):
 
 
 @response_handler
-def raise_for_scanner(response):
+def _raise_for_scanner(response):
     """Handles the errors raised by the stateful scanner"""
     if response.status_code == 204:
         raise ScannerExhausted()
@@ -32,7 +32,7 @@ def raise_for_scanner(response):
 
 
 @response_handler
-def raise_for_data_not_found(response):
+def _raise_for_data_not_found(response):
     """Handles the errors for data retrival"""
     if response.status_code == 404:
         raise NoDataFound()
@@ -40,7 +40,7 @@ def raise_for_data_not_found(response):
 
 
 @response_handler
-def raise_for_table_not_found(response):
+def _raise_for_table_not_found(response):
     """Handles the errors raised for finding tables"""
     if response.status_code == 404:
         raise TableNotFound()

@@ -4,6 +4,8 @@ services:
         build: .
         image: challisa/hbase-py
         container_name: hbase-py
+        ports:
+            - 8000:8000
         volumes:
             - .:/opt/working
             - ~/.gitconfig:/etc/gitconfig

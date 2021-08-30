@@ -10,8 +10,8 @@ Nothing easier!
 Fork and clone the repository, then:
 
 ```bash
-docker build . -t ghandic/hbase
-docker run -it ghandic/hbase bash
+docker build . -t capgeminiinventide/hbase
+docker run -it capgeminiinventide/hbase bash
 ```
 
 That's it!

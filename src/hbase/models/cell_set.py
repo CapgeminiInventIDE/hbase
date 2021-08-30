@@ -11,11 +11,11 @@ class Cell(BaseModel):
     value: str = Field(..., alias="$")
 
     @validator("value")
-    def value_from_b64(cls, v):
+    def _value_from_b64(cls, v):
         return from_base64(v)
 
     @validator("column")
-    def column_from_b64(cls, v):
+    def _column_from_b64(cls, v):
         return from_base64(v)
 
     class Config:
@@ -27,7 +27,7 @@ class Row(BaseModel):
     Cell: List[Cell]
 
     @validator("key")
-    def from_b64(cls, v):
+    def _from_b64(cls, v):
         return from_base64(v)
 
 
