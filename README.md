@@ -24,7 +24,9 @@ Hbase REST API client built using uplink
 
 ## Main Features
 
-- ... # TODO: Add features
+- A transparent and user friendly HBase REST API client
+- Easy to extend by subclassing and utilizing uplink's Consumer class
+- A great alternative to HBase Thrift client
 
 ## Installation
 
