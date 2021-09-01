@@ -6,7 +6,7 @@ pip install hbase
 
 ## Usage
 
-Build an instance to interact with the webservice.
+Build an instance to interact with the web service, check out the [HBase client reference](reference/client.md) for a full list of available methods.
 
 ```python
 from hbase import HBase
